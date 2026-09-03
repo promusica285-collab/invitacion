@@ -79,7 +79,7 @@
     }
 
     .envelope-wrapper.open {
-      margin-top: 570px;
+      margin-top: 550px;
     }
 
     .envelope {
@@ -245,63 +245,31 @@
       background: var(--card-bg);
       border-radius: 14px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      padding: 24px 18px 24px;
+      padding: 26px 20px 24px;
       text-align: center;
       box-sizing: border-box;
       transition: transform 0.85s cubic-bezier(0.25, 1, 0.5, 1), z-index 0.85s, box-shadow 0.85s;
-      transform: translateY(-120px);
+      transform: translateY(-118px);
       border: 1px solid rgba(0, 43, 73, 0.08);
     }
 
     .envelope-wrapper.open .card {
-      transform: translateY(-540px);
+      transform: translateY(-520px);
       z-index: 10;
       box-shadow: 0 25px 65px rgba(0, 43, 73, 0.22);
     }
 
-    /* Membrete institucional */
-    .mep-header {
-      border-bottom: 2px solid var(--mep-navy);
-      padding-bottom: 10px;
-      margin-bottom: 14px;
+    /* Encabezado sin línea horizontal */
+    .card-header-clean {
+      margin-bottom: 16px;
     }
 
-    .mep-title {
-      font-size: 0.72rem;
-      font-weight: 800;
-      color: var(--mep-navy);
-      text-transform: uppercase;
-      letter-spacing: 0.6px;
-      line-height: 1.25;
-      white-space: nowrap;
-    }
-
-    .mep-subtitle {
-      font-size: 0.59rem;
-      color: var(--text-muted);
-      font-weight: 600;
-      letter-spacing: 0.2px;
-      margin-top: 4px;
-      line-height: 1.3;
-    }
-
-    .mep-viceministerio {
-      white-space: nowrap;
-      display: block;
-    }
-
-    .mep-direccion {
-      display: block;
-      margin-top: 1px;
-    }
-
-    /* Saludo inicial */
-    .salutation {
-      font-size: 0.82rem;
+    .header-institution {
+      font-size: 0.86rem;
       font-weight: 700;
       color: var(--mep-navy);
-      margin-bottom: 4px;
-      line-height: 1.35;
+      line-height: 1.4;
+      letter-spacing: 0.2px;
     }
 
     .invite-text {
@@ -437,15 +405,13 @@
       <div class="envelope-slot">
         <div class="card" id="inviteCard">
           
-          <div class="mep-header">
-            <h2 class="mep-title">Ministerio de Educación Pública</h2>
-            <div class="mep-subtitle">
-              <span class="mep-viceministerio">Viceministerio de Planificación y Coordinación Regional</span>
-              <span class="mep-direccion">Dirección de Gestión y Desarrollo Regional</span>
-            </div>
+          <!-- Encabezado unificado sin línea horizontal -->
+          <div class="card-header-clean">
+            <h2 class="header-institution">
+              La Dirección de Gestión y Desarrollo Regional y los compañeros y compañeras Directores Regionales
+            </h2>
           </div>
 
-          <p class="salutation">Compañeros y compañeras Directores y Directoras Regionales</p>
           <p class="invite-text">Te invitamos a compartir con nosotros</p>
 
           <div class="event-info-box">
