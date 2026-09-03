@@ -2,22 +2,24 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Invitación Especial</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invitación Especial - DGDR | MEP</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-cream: #F5F1EB;
-      --envelope-blue: #4A7A96;
-      --envelope-dark: #3B647D;
-      --envelope-light: #5B8BA8;
+      --bg-cream: #F4F1EA;
+      --mep-navy: #002B49;
+      --mep-navy-mid: #0E3B61;
+      --mep-navy-light: #1A4E7B;
+      --gold-seal: #C29B38;
+      --gold-light: #DFBE6B;
+      --gold-text: #D4AF37;
       --card-bg: #FFFFFF;
-      --text-dark: #2B3A42;
-      --text-muted: #7A8B99;
-      --gold-accent: #C5A880;
-      --shadow-color: rgba(43, 58, 66, 0.14);
+      --text-dark: #1E293B;
+      --text-muted: #64748B;
+      --shadow-soft: rgba(0, 43, 73, 0.2);
     }
 
     * {
@@ -34,56 +36,75 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      overflow-x: hidden;
-      padding: 30px 15px;
+      justify-content: flex-start;
+      padding: 30px 15px 90px;
     }
 
-    /* Mensaje guía */
+    /* Aviso superior */
     .tap-hint {
       text-align: center;
       margin-bottom: 25px;
-      transition: opacity 0.4s ease;
       user-select: none;
+      transition: opacity 0.4s ease;
     }
 
     .tap-hint span {
       font-size: 0.8rem;
-      letter-spacing: 3px;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      color: var(--text-muted);
-      font-weight: 600;
+      color: var(--mep-navy);
+      font-weight: 700;
       display: inline-block;
-      animation: pulseText 2s infinite;
+      background: rgba(255, 255, 255, 0.92);
+      padding: 10px 22px;
+      border-radius: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+      animation: pulseText 2s infinite ease-in-out;
     }
 
     @keyframes pulseText {
-      0%, 100% { opacity: 0.55; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.04); }
+      0%, 100% { transform: scale(1); opacity: 0.85; }
+      50% { transform: scale(1.04); opacity: 1; }
     }
 
     /* Contenedor del sobre */
     .envelope-wrapper {
       position: relative;
-      width: 320px;
-      height: 220px;
-      perspective: 1200px;
+      width: 375px;
+      max-width: 94vw;
+      height: 245px;
       cursor: pointer;
-      margin-top: 80px;
-      transition: margin-top 0.8s cubic-bezier(0.34, 1.2, 0.64, 1);
+      margin-top: 140px;
+      transition: margin-top 0.85s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
     .envelope-wrapper.open {
-      margin-top: 260px;
+      margin-top: 570px;
     }
 
     .envelope {
       position: relative;
       width: 100%;
       height: 100%;
-      background-color: var(--envelope-dark);
+      background-color: var(--mep-navy);
       border-radius: 8px;
-      box-shadow: 0 16px 40px var(--shadow-color);
+      box-shadow: 0 20px 45px var(--shadow-soft);
+    }
+
+    /* Ranura que oculta la parte inferior de la tarjeta */
+    .envelope-slot {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    .envelope-wrapper.open .envelope-slot {
+      overflow: visible;
     }
 
     /* Solapa superior interactiva */
@@ -93,13 +114,13 @@
       left: 0;
       width: 0;
       height: 0;
-      border-left: 160px solid transparent;
-      border-right: 160px solid transparent;
-      border-top: 125px solid var(--envelope-light);
+      border-left: 187.5px solid transparent;
+      border-right: 187.5px solid transparent;
+      border-top: 140px solid var(--mep-navy-light);
       transform-origin: top center;
       transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.2s;
       z-index: 5;
-      filter: drop-shadow(0 3px 5px rgba(0,0,0,0.12));
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.25));
     }
 
     .envelope-wrapper.open .flap {
@@ -107,28 +128,31 @@
       z-index: 1;
     }
 
-    /* Sello lacre central */
+    /* Sello lacre conmemorativo */
     .wax-seal {
       position: absolute;
-      top: 108px;
+      top: 122px;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 46px;
-      height: 46px;
-      background: radial-gradient(circle, #FFFFFF 45%, #E5DFD7 100%);
+      width: 52px;
+      height: 52px;
+      background: radial-gradient(circle, var(--gold-light) 20%, var(--gold-seal) 100%);
       border-radius: 50%;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.18), inset 0 0 4px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.3), inset 0 0 6px rgba(255,255,255,0.5);
       z-index: 6;
       display: flex;
       align-items: center;
       justify-content: center;
+      border: 1px dashed rgba(255,255,255,0.4);
       transition: opacity 0.35s ease, transform 0.35s ease;
     }
 
-    .wax-seal::after {
-      content: '✉';
-      font-size: 18px;
-      color: var(--envelope-dark);
+    .wax-seal span {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: #1A1A1A;
+      font-family: 'Montserrat', sans-serif;
     }
 
     .envelope-wrapper.open .wax-seal {
@@ -137,7 +161,32 @@
       pointer-events: none;
     }
 
-    /* Bolsillo del sobre */
+    /* Texto cursivo dorado en el frente del sobre */
+    .envelope-cursive-title {
+      position: absolute;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Alex Brush', cursive;
+      font-size: 2.15rem;
+      white-space: nowrap;
+      color: #EAC775;
+      background: linear-gradient(135deg, #FFF1C5 0%, #D4AF37 50%, #AA820A 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.4));
+      z-index: 6;
+      pointer-events: none;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      letter-spacing: 1px;
+    }
+
+    .envelope-wrapper.open .envelope-cursive-title {
+      opacity: 0;
+      transform: translateX(-50%) translateY(15px);
+    }
+
+    /* Bolsillo exterior del sobre */
     .pocket {
       position: absolute;
       bottom: 0;
@@ -155,9 +204,9 @@
       left: 0;
       width: 0;
       height: 0;
-      border-left: 160px solid var(--envelope-blue);
-      border-top: 110px solid transparent;
-      border-bottom: 110px solid var(--envelope-blue);
+      border-left: 187.5px solid var(--mep-navy-mid);
+      border-top: 122px solid transparent;
+      border-bottom: 122px solid var(--mep-navy-mid);
       border-radius: 0 0 0 8px;
     }
 
@@ -168,9 +217,9 @@
       right: 0;
       width: 0;
       height: 0;
-      border-right: 160px solid var(--envelope-blue);
-      border-top: 110px solid transparent;
-      border-bottom: 110px solid var(--envelope-blue);
+      border-right: 187.5px solid var(--mep-navy-mid);
+      border-top: 122px solid transparent;
+      border-bottom: 122px solid var(--mep-navy-mid);
       border-radius: 0 0 8px 0;
     }
 
@@ -180,136 +229,188 @@
       left: 0;
       width: 0;
       height: 0;
-      border-left: 160px solid transparent;
-      border-right: 160px solid transparent;
-      border-bottom: 125px solid var(--envelope-dark);
+      border-left: 187.5px solid transparent;
+      border-right: 187.5px solid transparent;
+      border-bottom: 140px solid var(--mep-navy);
       z-index: 4;
       border-radius: 0 0 8px 8px;
     }
 
-    /* Tarjeta interior moderna */
+    /* TARJETA INTERIOR */
     .card {
       position: absolute;
       left: 15px;
-      bottom: 10px;
-      width: 290px;
+      top: 0;
+      width: 345px;
       background: var(--card-bg);
-      border-radius: 12px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.06);
-      padding: 28px 20px 22px;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      padding: 24px 18px 24px;
       text-align: center;
-      z-index: 2;
       box-sizing: border-box;
-      transition: transform 0.85s cubic-bezier(0.34, 1.25, 0.64, 1), z-index 0.85s, box-shadow 0.85s;
-      transform: translateY(0);
+      transition: transform 0.85s cubic-bezier(0.25, 1, 0.5, 1), z-index 0.85s, box-shadow 0.85s;
+      transform: translateY(-120px);
+      border: 1px solid rgba(0, 43, 73, 0.08);
     }
 
     .envelope-wrapper.open .card {
-      transform: translateY(-310px);
+      transform: translateY(-540px);
       z-index: 10;
-      box-shadow: 0 20px 45px rgba(0,0,0,0.14);
+      box-shadow: 0 25px 65px rgba(0, 43, 73, 0.22);
     }
 
-    /* Estilos del texto de la tarjeta */
-    .card-header {
-      font-size: 0.7rem;
-      letter-spacing: 3px;
+    /* Membrete institucional */
+    .mep-header {
+      border-bottom: 2px solid var(--mep-navy);
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+    }
+
+    .mep-title {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--mep-navy);
       text-transform: uppercase;
+      letter-spacing: 0.6px;
+      line-height: 1.25;
+      white-space: nowrap;
+    }
+
+    .mep-subtitle {
+      font-size: 0.59rem;
       color: var(--text-muted);
       font-weight: 600;
-      margin-bottom: 12px;
+      letter-spacing: 0.2px;
+      margin-top: 4px;
+      line-height: 1.3;
     }
 
-    .card-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.1rem;
-      font-weight: 600;
-      color: var(--envelope-dark);
-      line-height: 1.15;
+    .mep-viceministerio {
+      white-space: nowrap;
+      display: block;
+    }
+
+    .mep-direccion {
+      display: block;
+      margin-top: 1px;
+    }
+
+    /* Saludo inicial */
+    .salutation {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--mep-navy);
       margin-bottom: 4px;
+      line-height: 1.35;
     }
 
-    .card-subtitle {
-      font-size: 0.78rem;
-      letter-spacing: 2.5px;
+    .invite-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    /* Cuadro de Convocatoria */
+    .event-info-box {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      padding: 12px 10px;
+      margin-bottom: 16px;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      color: var(--text-dark);
+      margin: 4px 0;
+    }
+
+    .info-label {
+      font-weight: 700;
+      color: var(--mep-navy);
+      font-size: 0.72rem;
       text-transform: uppercase;
-      color: var(--gold-accent);
-      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .info-val {
+      font-weight: 600;
+    }
+
+    /* Frase emotiva */
+    .quote-box {
+      margin: 15px 0;
+      padding: 0 4px;
+    }
+
+    .quote-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      color: #334155;
+      line-height: 1.35;
+    }
+
+    /* Sección de homenaje */
+    .honor-section {
+      background: linear-gradient(180deg, rgba(244, 241, 234, 0.4) 0%, rgba(244, 241, 234, 0.9) 100%);
+      border-left: 3px solid var(--gold-seal);
+      border-radius: 0 8px 8px 0;
+      padding: 10px 8px;
+      margin-bottom: 15px;
+    }
+
+    .honor-title {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--gold-seal);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .honor-name {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--mep-navy);
+      margin: 3px 0;
+    }
+
+    .closing-text {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      line-height: 1.35;
       margin-bottom: 18px;
     }
 
-    .card-divider {
-      width: 40px;
-      height: 1px;
-      background-color: var(--gold-accent);
-      margin: 0 auto 18px;
-      opacity: 0.8;
-    }
-
-    .card-details {
-      margin-bottom: 22px;
-    }
-
-    .detail-item {
-      margin-bottom: 12px;
-    }
-
-    .detail-label {
-      display: block;
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      letter-spacing: 1.8px;
-      color: var(--text-muted);
-      margin-bottom: 2px;
-      font-weight: 600;
-    }
-
-    .detail-value {
-      font-size: 0.92rem;
-      color: var(--text-dark);
-      font-weight: 500;
-    }
-
-    /* Botones de acción */
-    .card-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
+    /* Botón de confirmación */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 12px 16px;
+      width: 100%;
+      padding: 13px 14px;
       border-radius: 8px;
       text-decoration: none;
       font-size: 0.75rem;
-      letter-spacing: 1.5px;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
-      font-weight: 600;
+      font-weight: 700;
+      background-color: var(--mep-navy);
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(0, 43, 73, 0.25);
       transition: all 0.2s ease;
     }
 
-    .btn-primary {
-      background-color: var(--envelope-blue);
-      color: #FFFFFF;
-      box-shadow: 0 4px 12px rgba(74, 122, 150, 0.25);
-    }
-
-    .btn-primary:active {
+    .btn:active {
       transform: scale(0.98);
-      background-color: var(--envelope-dark);
-    }
-
-    .btn-secondary {
-      background-color: transparent;
-      color: var(--text-dark);
-      border: 1px solid #D1DCE3;
-    }
-
-    .btn-secondary:active {
-      background-color: #F8FAFC;
+      background-color: var(--mep-navy-mid);
     }
   </style>
 </head>
@@ -322,38 +423,65 @@
   <div class="envelope-wrapper" id="envelopeWrapper">
     <div class="envelope">
       <div class="flap"></div>
-      <div class="wax-seal"></div>
+      
+      <!-- Sello central -->
+      <div class="wax-seal">
+        <span>MEP</span>
+      </div>
 
-      <!-- Tarjeta interior deslizable -->
-      <div class="card" id="inviteCard">
-        <p class="card-header">Nuestra Celebración</p>
-        <h1 class="card-title">María & Luis</h1>
-        <p class="card-subtitle">Save The Date</p>
-        
-        <div class="card-divider"></div>
+      <!-- Texto cursivo dorado en el sobre cerrado -->
+      <div class="envelope-cursive-title">
+        Invitación Especial
+      </div>
 
-        <div class="card-details">
-          <div class="detail-item">
-            <span class="detail-label">Fecha</span>
-            <span class="detail-value">Sábado, 24 de Octubre de 2026</span>
+      <div class="envelope-slot">
+        <div class="card" id="inviteCard">
+          
+          <div class="mep-header">
+            <h2 class="mep-title">Ministerio de Educación Pública</h2>
+            <div class="mep-subtitle">
+              <span class="mep-viceministerio">Viceministerio de Planificación y Coordinación Regional</span>
+              <span class="mep-direccion">Dirección de Gestión y Desarrollo Regional</span>
+            </div>
           </div>
-          <div class="detail-item">
-            <span class="detail-label">Hora</span>
-            <span class="detail-value">4:00 PM</span>
-          </div>
-          <div class="detail-item">
-            <span class="detail-label">Lugar</span>
-            <span class="detail-value">San Ramón, Alajuela</span>
-          </div>
-        </div>
 
-        <div class="card-actions">
-          <a href="https://maps.google.com" target="_blank" class="btn btn-primary" onclick="event.stopPropagation();">
-            📍 Ver Ubicación
-          </a>
-          <a href="https://wa.me/50688888888?text=Hola,%20confirmo%20mi%20asistencia." target="_blank" class="btn btn-secondary" onclick="event.stopPropagation();">
+          <p class="salutation">Compañeros y compañeras Directores y Directoras Regionales</p>
+          <p class="invite-text">Te invitamos a compartir con nosotros</p>
+
+          <div class="event-info-box">
+            <div class="info-row">
+              <span class="info-label">Fecha:</span>
+              <span class="info-val">Martes 22 de setiembre</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Hora:</span>
+              <span class="info-val">7:00 p.m.</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Lugar:</span>
+              <span class="info-val">DRE Turrialba</span>
+            </div>
+          </div>
+
+          <div class="quote-box">
+            <p class="quote-text">“Aunque una etapa laboral ha llegado a su fin, los lazos de amistad y los recuerdos compartidos permanecen”</p>
+          </div>
+
+          <div class="honor-section">
+            <p class="honor-title">Será un honor contar con:</p>
+            <p class="honor-name">Alejandra Gutiérrez Vargas</p>
+            <p class="honor-name">Aurelio Noguera Valverde</p>
+            <p class="honor-name">Olger López Medina</p>
+          </div>
+
+          <p class="closing-text">
+            La presencia de cada uno de ustedes en este espacio de reencuentro nos permitirá revivir juntos los momentos vividos.
+          </p>
+
+          <a href="https://wa.me/50688888888?text=Estimados%20compañeros,%20confirmo%20mi%20asistencia%20al%20espacio%20de%20reencuentro%20del%20martes%2022%20de%20setiembre." target="_blank" class="btn" onclick="event.stopPropagation();">
             Confirmar Asistencia
           </a>
+
         </div>
       </div>
 
